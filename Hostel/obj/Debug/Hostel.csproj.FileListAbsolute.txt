@@ -1,0 +1,17 @@
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\Hostel.exe.config
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\Hostel.exe
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\Hostel.pdb
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.Form1.resources
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.Properties.Resources.resources
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.csproj.GenerateResource.cache
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.exe
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.pdb
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\EntityFramework.dll
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\EntityFramework.xml
+C:\Users\HP\source\repos\Hostel\Hostel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.AdminDahboard.resources
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.csproj.CopyComplete
+C:\Users\HP\source\repos\Hostel\Hostel\obj\Debug\Hostel.Rooms.resources

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HostelAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Beds">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Beds_Number" Type="Int32" Nullable="false" />
+    <Property Name="Beds_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Beds_Price" Type="Int32" Nullable="false" />
+    <Property Name="Rooms_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Beds_Rooms" FromRole="Beds" ToRole="Rooms" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Beds" FromRole="Beds" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Earning">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reservation_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Earning_Reservation" FromRole="Earning" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Expense1" Type="Int32" Nullable="false" />
+    <Property Name="Dates" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Guests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CardId" Type="Int32" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Guests" FromRole="Guests" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guest_id" Type="Int32" Nullable="false" />
+    <Property Name="Beds_id" Type="Int32" Nullable="false" />
+    <Property Name="Guest_Phone" Type="Int32" Nullable="false" />
+    <Property Name="Check_in" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Check_out" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beds" Relationship="Self.FK_Reservation_Beds" FromRole="Reservation" ToRole="Beds" />
+    <NavigationProperty Name="Earning" Relationship="Self.FK_Earning_Reservation" FromRole="Reservation" ToRole="Earning" />
+    <NavigationProperty Name="Guests" Relationship="Self.FK_Reservation_Guests" FromRole="Reservation" ToRole="Guests" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rooms_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rooms_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beds" Relationship="Self.FK_Beds_Rooms" FromRole="Rooms" ToRole="Beds" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Beds_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+    <End Role="Beds" Type="Self.Beds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Beds">
+        <PropertyRef Name="Rooms_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Beds">
+    <End Role="Beds" Type="Self.Beds" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Beds">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Beds_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Earning_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Earning" Type="Self.Earning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Earning">
+        <PropertyRef Name="Reservation_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Guests">
+    <End Role="Guests" Type="Self.Guests" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guests">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Guest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HostelAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Beds" EntityType="Self.Beds" />
+    <EntitySet Name="Earning" EntityType="Self.Earning" />
+    <EntitySet Name="Expense" EntityType="Self.Expense" />
+    <EntitySet Name="Guests" EntityType="Self.Guests" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+    <EntitySet Name="Rooms" EntityType="Self.Rooms" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" />
+    <AssociationSet Name="FK_Beds_Rooms" Association="Self.FK_Beds_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Beds" EntitySet="Beds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Beds" Association="Self.FK_Reservation_Beds">
+      <End Role="Beds" EntitySet="Beds" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Earning_Reservation" Association="Self.FK_Earning_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Earning" EntitySet="Earning" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Guests" Association="Self.FK_Reservation_Guests">
+      <End Role="Guests" EntitySet="Guests" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
